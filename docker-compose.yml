@@ -1,0 +1,32 @@
+services:
+
+  laravel-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+
+    container_name: gestion-documental-ia-dev
+
+    working_dir: /var/www/html
+
+    volumes:
+      - .:/var/www/html
+
+    ports:
+      - "8001:8000"
+
+    stdin_open: true
+    tty: true
+
+    networks:
+      - desarrollo_network
+
+
+networks:
+
+  desarrollo_network:
+    name: desarrollo_network
+    driver: bridge
